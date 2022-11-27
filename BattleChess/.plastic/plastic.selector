@@ -1,0 +1,4 @@
+repository "BattleChess@sakura12010513@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
