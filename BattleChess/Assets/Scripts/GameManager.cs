@@ -9,17 +9,30 @@ public class GameManager : MonoBehaviour
     public UIManager uIManager;
     public Animator animator;
 
+    //所有格子
     public GameObject[] cells;
+
+    //所有棋子
     public GameObject[] pieces;
+
+    //当前行动棋子
     public GameObject selectedPiece;
+
+    //剩余棋子数，用于判断胜利
     public int[] pieceCount;
 
+    //当前回合阵营
     public int currentTeam;
+
+    //下一回合阵营
     public int nextTeam;
 
+    //胜利动画
     public Text winText;
     public GameObject winTextObject;
     public GameObject winAnimation;
+
+    //是否正在选择格子，如move选择移动地点，attack选择攻击目标
     public bool isSelecting;
 
  
@@ -34,6 +47,8 @@ public class GameManager : MonoBehaviour
         pieces = GameObject.FindGameObjectsWithTag("Piece");
         currentTeam = 1;
         nextTeam = 2;
+
+        
         pieceCount = new int[3];
         foreach(var piece in pieces)
         {
@@ -58,6 +73,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //关闭范围显示
     public void CloseAllRange()
     {
         isSelecting = false;
@@ -68,36 +84,9 @@ public class GameManager : MonoBehaviour
             cell.GetComponent<Cell>().selectable = false;
         }
     }
-    public void OnClickMove()
-    {
-        CloseAllRange();
-        Piece p = selectedPiece.GetComponent<Piece>();
-        p.curSkill = "move";
-        gameObject.GetComponent<Skills>().SkillChoose();
-
-    }
 
 
-    public void OnClickAttack()
-    {
-        CloseAllRange();
-        Piece p = selectedPiece.GetComponent<Piece>();
-        p.curSkill = "attack";
-        gameObject.GetComponent<Skills>().SkillChoose();
-
-    }
-
-
-    public void OnClickSkill()
-    {
-        CloseAllRange();
-        Piece p = selectedPiece.GetComponent<Piece>();
-        p.curSkill = p.skill;
-        gameObject.GetComponent<Skills>().SkillChoose();
-        
-    }
-
-
+    //交换回合
     public void TurnEnd()
     {
         pieces = GameObject.FindGameObjectsWithTag("Piece");
@@ -139,6 +128,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Turn end, now player is " + currentTeam);
     }
 
+    //高亮当前行动棋子
     public void Highlight()
     {
 
@@ -159,7 +149,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    //销毁棋子
     public void PieceDestroy(GameObject _gameObject)
     {
         int team = _gameObject.GetComponent<Piece>().team;

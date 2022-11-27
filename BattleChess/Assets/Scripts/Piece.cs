@@ -57,6 +57,7 @@ public class Piece : MonoBehaviour
         }
     }
     
+    //调用对应cell中的方法
     public void OnMouseDown()
     {
         Debug.Log("this is a " + this.tag + " position: " + transform.position.x + "," + transform.position.y);
@@ -78,6 +79,7 @@ public class Piece : MonoBehaviour
 
     }
 
+    //调用对应cell中的方法
     public void OnMouseEnter()
     {
         Cell c = null;
@@ -96,6 +98,8 @@ public class Piece : MonoBehaviour
             c.OnMouseEnter();
         }
     }
+
+    //调用对应cell中的方法
     public void OnMouseExit()
     {
         Cell c = null;
@@ -114,19 +118,8 @@ public class Piece : MonoBehaviour
             c.OnMouseExit();
         }
     }
-    /*
-    public void Move(float _x,float _y)
-    {
-        
-        SetStandCell(false);
-        transform.position = new Vector2(_x, _y);
-        gameManager.CloseAllRange();
-        SetStandCell(true);
-        hasMoved = true;
-        
-    }
-    */
 
+    //设置当前格子被占领
     public void SetStandCell(bool _stand)
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.zero);

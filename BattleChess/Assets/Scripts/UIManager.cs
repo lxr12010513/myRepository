@@ -28,14 +28,50 @@ public class UIManager : MonoBehaviour
         ShowButtons();
         ShowPieceInformation();
     }
+
+    //右上turnend按钮被点击
     public void OnClickTurnEnd()
     {
         gameManager.TurnEnd();
     }
+
+    //右上restart按钮被点击
     public void OnClickRestart()
     {
         SceneManager.LoadScene(1);
     }
+
+    //右侧move按钮被点击
+    public void OnClickMove()
+    {
+        gameManager.CloseAllRange();
+        Piece p = gameManager.selectedPiece.GetComponent<Piece>();
+        p.curSkill = "move";
+        gameManager.GetComponent<Skills>().SkillChoose();
+
+    }
+
+    //右侧attack按钮被点击
+    public void OnClickAttack()
+    {
+        gameManager.CloseAllRange();
+        Piece p = gameManager.selectedPiece.GetComponent<Piece>();
+        p.curSkill = "attack";
+        gameManager.GetComponent<Skills>().SkillChoose();
+
+    }
+
+    //右侧skill按钮被点击
+    public void OnClickSkill()
+    {
+        gameManager.CloseAllRange();
+        Piece p = gameManager.selectedPiece.GetComponent<Piece>();
+        p.curSkill = p.skill;
+        gameManager.GetComponent<Skills>().SkillChoose();
+
+    }
+
+    //显示右侧按钮
     public void ShowButtons()
     {
         attackButton.SetActive(false);
@@ -55,7 +91,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-
+    //左上角显示属性
     public void ShowPieceInformation()
     {
         demage.text = "";
