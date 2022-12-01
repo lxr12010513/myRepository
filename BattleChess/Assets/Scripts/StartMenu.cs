@@ -18,6 +18,6 @@ public class StartMenu : MonoBehaviour
     }
     public void OnClickNewGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Level1");
     }
 }

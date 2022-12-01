@@ -1,1 +1,1 @@
-D:\myRepository\BattleChess
+C:\CS309\BattleChess\BattleChess\BattleChess
